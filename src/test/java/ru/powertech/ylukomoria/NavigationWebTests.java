@@ -8,6 +8,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.powertech.ylukomoria.base.BaseWebTest;
 import ru.powertech.ylukomoria.page.ContentPage;
+import ru.powertech.ylukomoria.utils.EnvironmentInfo;
+
 import java.util.Locale;
 import static io.qameta.allure.Allure.step;
 import static org.hamcrest.Matchers.equalTo;
@@ -22,14 +24,13 @@ public class NavigationWebTests extends BaseWebTest {
     private ContentPage contentPage=null;
 
     @BeforeEach
-    public void beforeEach() {
-        contentPage = new ContentPage(driver);
-    }
+    public void beforeEach() { contentPage = new ContentPage(driver);}
 
     @AfterEach
     void tearDown() {
         contentPage=null;
     }
+
 
     @DisplayName("Проверка панели навигации")
     @ParameterizedTest

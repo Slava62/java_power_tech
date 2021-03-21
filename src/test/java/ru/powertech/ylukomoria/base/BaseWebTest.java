@@ -1,7 +1,9 @@
 package ru.powertech.ylukomoria.base;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -14,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 
 public abstract class BaseWebTest {
 
+    public static final String HTTPS_YLUKOMORIA_RU = "https://ylukomoria.ru";
     public WebDriver driver;
     public WebDriverWait wait15second;
 
@@ -26,20 +29,17 @@ public abstract class BaseWebTest {
         options.setExperimentalOption("excludeSwitches", Arrays.asList("disable-popup-blocking"));
         options.addArguments("--window-size=800,600");
         driver = new ChromeDriver(options);
+        EnvironmentInfo.setAllureEnvironment(driver);
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
         driver.manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
-        //driver.manage().window().maximize();
-        driver.get("https://ylukomoria.ru");
-        EnvironmentInfo.setAllureEnvironment(driver);
-        driver.get("https://ylukomoria.ru/o-nas.html");
         wait15second = new WebDriverWait(driver, 15);
+        driver.get(HTTPS_YLUKOMORIA_RU+"/o-nas.html");
     }
 
 
     @AfterEach
-    public void BaseTestAfterAll() {
-        driver.quit();
-    }
+    public void baseTestAfterAll() {driver.quit();}
+
 
 }
