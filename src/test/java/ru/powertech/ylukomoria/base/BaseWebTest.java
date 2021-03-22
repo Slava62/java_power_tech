@@ -24,6 +24,7 @@ public abstract class BaseWebTest {
     public void baseTestBeforeAll() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless");
         options.addArguments("--disable-notifications");
         options.addArguments("--disable-popup-blocking");
         options.setExperimentalOption("excludeSwitches", Arrays.asList("disable-popup-blocking"));
