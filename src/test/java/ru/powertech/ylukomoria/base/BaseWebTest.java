@@ -1,9 +1,7 @@
 package ru.powertech.ylukomoria.base;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -25,6 +23,7 @@ public abstract class BaseWebTest {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
+        options.addArguments("--whitelisted-ips 0.0.0.0");
         options.addArguments("--disable-notifications");
         options.addArguments("--disable-popup-blocking");
         options.setExperimentalOption("excludeSwitches", Arrays.asList("disable-popup-blocking"));
